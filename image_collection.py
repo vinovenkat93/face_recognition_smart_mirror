@@ -5,7 +5,7 @@ import cv2
 import face_recognition as face_reg
 
 capture_obj = cv2.VideoCapture(0) #Index: 0 (Camera 1)
-face_cascade = cv2.CascadeClassifier('')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 #eye_cascade = cv2.CascadeClassifier('')
 counter = 1
 
@@ -24,7 +24,7 @@ while True:
             print "Image couldn't be captured. Please try again!"
             continue
 
-        faces = face_reg.detect_faces(current_frame)
+        faces = face_reg.detect_faces(face_cascade,current_frame)
         if !(face_reg.store_faces(current_frame,faces)):
             print "Couldn't detect faces. Try again!"
 
