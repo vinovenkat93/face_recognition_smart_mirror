@@ -1,3 +1,5 @@
+# This module is used to collect training images (Faces of users who will be using the mirror)
+
 import numpy as np
 import cv2
 import face_recognition as face_reg
