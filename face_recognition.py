@@ -27,7 +27,7 @@ def store_faces(current_frame,counter):
             cv2.imwrite(filename, face_crop_resize, CV_IMWRITE_JPEG_QUALITY, 95)
 
             print "Image stored as 'face_%d.jpeg'" % counter
-            counter++
+            counter += 1
             return True
     else:
         return False
