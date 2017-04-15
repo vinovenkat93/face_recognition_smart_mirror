@@ -1,3 +1,5 @@
+# Contains all the helper functions needed for face recognition
+
 import numpy as np
 import numpy.linalg as npla
 import numpy.matlib as npml
