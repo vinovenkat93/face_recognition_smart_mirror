@@ -16,7 +16,7 @@ while True:
 
     input_text = raw_input("Press Enter if you want to capture image")
 
-    if text == "":
+    if input_text == "":
         #Capture frame
         isread, current_frame = capture_obj.read()
 
@@ -25,7 +25,7 @@ while True:
             continue
 
         faces = face_reg.detect_faces(face_cascade,current_frame)
-        if !(face_reg.store_faces(current_frame,faces)):
+        if not (face_reg.store_faces(current_frame,faces)):
             print "Couldn't detect faces. Try again!"
 
     else:
