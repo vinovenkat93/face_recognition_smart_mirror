@@ -26,7 +26,7 @@ for i in range(no_of_classes):
         vector_img[:,k] = face_reg.vectorize_image(A)
 
         mean_vector += vector_img
-        k++
+        k += 1
 
 # Covariance matrix calculation
 C = np.zeros((size_vector_img,size_vector_img))
@@ -48,7 +48,7 @@ k = 0
 for i in range(no_of_classes):
     for j in range(no_of_imgs_class):
         y[:,j,i] = dot(W.transpose(),(vector_img[:,k] - mean_vector))
-        k++
+        k += 1
 
 # Binary file
 np.save('Trained_Data.npy',y)
