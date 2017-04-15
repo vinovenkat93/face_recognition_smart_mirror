@@ -1,4 +1,6 @@
 import numpy as np
+import numpy.linalg as npla
+import face_recognition as face_reg
 import cv2
 
 
@@ -12,7 +14,6 @@ N = 150 # Number of images
 train_image_path = "/home/sriranjitha/ECE_568_Project/train_images"
 
 k = 0
-a = 0
 
 # Vectorizing images and getting mean
 for i in range(no_of_classes):
@@ -22,13 +23,7 @@ for i in range(no_of_classes):
         A = cv2.cvtColor(A, cv2.BGR2GRAY)
         A.astype(double)
 
-        if a == 1:
-            size_vector_img = A.shape[0]*A.shape[1]
-            mean_vector = np.zeros((size_vector_img))
-            a++
-
-        np.reshape(A, (size_vector_img,1))
-        vector_img[:,k] = A
+        vector_img[:,k] = face_reg.vectorize_image(A)
 
         mean_vector += vector_img
         k++
@@ -38,10 +33,10 @@ C = np.zeros((size_vector_img,size_vector_img))
 #X = np.zeros(size_vector_img,1)
 
 for i in range(N):
-    norm_vector_img[:,i] = (vector_img[:,i] - mean_vector)/np.linalg.norm((vector_img[:,1] - mean_vector))
+    norm_vector_img[:,i] = (vector_img[:,i] - mean_vector)/npla.norm((vector_img[:,1] - mean_vector))
 
 # Getting first 20 eigenvectors
-w,v = np.linalg.eig(norm_vector_img)
+w,v = npla.eig(norm_vector_img)
 index = np.argsort(w, kind="mergesort")
 
 # Principal components
@@ -57,6 +52,10 @@ for i in range(no_of_classes):
 
 # Binary file
 np.save('Trained_Data.npy',y)
+np.save('PCA_matrix.npy',W)
+np.save('mean_vector.npy',mean_vector)
 
 # Text format
 np.savetxt('Trained_Data.txt',y)
+np.savetxt('PCA_matrix.txt',W)
+np.savetxt('mean_vector.txt',mean_vector)

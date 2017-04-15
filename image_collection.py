@@ -23,7 +23,8 @@ while True:
             continue
 
         faces = face_reg.detect_faces(current_frame)
-        face_reg.store_faces(faces)
+        if !(face_reg.store_faces(current_frame,faces)):
+            print "Couldn't detect faces. Try again!"
 
     else:
         print "You typed something else. Press enter to capture and store image"
