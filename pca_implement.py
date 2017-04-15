@@ -7,7 +7,7 @@ def run_pca():
     capture_obj = cv2.VideoCapture(0) #Index: 0 (Camera 1)
     face_cascade = cv2.CascadeClassifier('')
 
-    if !capture_obj.isOpened():
+    if not capture_obj.isOpened():
         capture_obj.open()
 
         trained_data = np.load('Trained_Data.npy')
@@ -18,7 +18,7 @@ def run_pca():
         while True:
 
             isread, current_frame = capture_obj.read()
-            if !isread:
+            if not isread:
                 continue
             else:
                 # K-nearest neighbor for finding right face
