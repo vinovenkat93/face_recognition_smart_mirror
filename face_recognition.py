@@ -5,7 +5,7 @@ import numpy.linalg as npla
 import numpy.matlib as npml
 import cv2
 
-def detect_faces(current_frame):
+def detect_faces(face_cascade, current_frame):
     current_frame_gray = cv2.cvtColor(current_frame, cv2.BGR2GRAY)
     faces = face_cascade.detectMultiScale(current_frame_gray, 1.3, 5)
     return faces
