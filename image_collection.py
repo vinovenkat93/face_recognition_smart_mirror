@@ -11,7 +11,7 @@ counter = 1
 
 while True:
 
-    if !capture_obj.isOpened():
+    if not capture_obj.isOpened():
         capture_obj.open()
 
     input_text = raw_input("Press Enter if you want to capture image")
@@ -20,7 +20,7 @@ while True:
         #Capture frame
         isread, current_frame = capture_obj.read()
 
-        if !isread:
+        if not isread:
             print "Image couldn't be captured. Please try again!"
             continue
 
